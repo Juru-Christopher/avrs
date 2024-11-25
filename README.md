@@ -29,13 +29,12 @@ Here are the main libraries:
 
 External Dependencies
 ---------------------
-    Tesseract OCR: Install and configure Tesseract OCR for license plate recognition.
+    pip install Flask opencv-python numpy pytesseract
 
 Installation
 ------------
-    Clone the repository:
 git clone https://github.com/Juru-Christopher/avrs.git
-cd parking-system
+cd avrs
 
 Set up your Python environment:
 -------------------------------
