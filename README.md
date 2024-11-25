@@ -34,7 +34,6 @@ External Dependencies
 Installation
 ------------
 git clone https://github.com/Juru-Christopher/avrs.git
-cd avrs
 
 Set up your Python environment:
 -------------------------------
