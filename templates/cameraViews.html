@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Cameras</title>
+    <!-- Linking to the static CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <!-- Header and Navbar -->
+    <header class="navbar">
+        <div class="logo">Parking System</div>
+        <nav class="nav-links">
+            <a href="reports.html" class="nav-link">Reports</a>
+            <a href="settings.html" class="nav-link">Settings</a>
+            <a href="login.html" class="nav-link">Sign Out</a>
+        </nav>
+    </header>
+
+    <!-- Sidebar -->
+    <aside id="sidebar">
+        <a href="{{ url_for('dashboard') }}" class="nav-link">Dashboard</a>
+        <a href="cameraViews.html" class="nav-link">View Cameras</a>
+        <a href="DatabaseView.html" class="nav-link">View Database</a>
+        <a href="logView.html" class="nav-link">View System Logs</a>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Left Column: Camera Feed -->
+        <div class="camera-frame camera-frame1">
+            <div class="camera-title">CAMERA 01</div>
+            <div class="camera-feed">
+                <!-- Embed video feed from Flask route -->
+                <img src="{{ url_for('video_1') }}" alt="Camera 01 Feed" id="camera1-stream">
+            </div>
+        </div>
+
+        <!-- Right Column: Camera Feed -->
+        <div class="camera-frame camera-frame2">
+            <div class="camera-title">CAMERA 02</div>
+            <div class="camera-feed">
+                <!-- Embed video feed from Flask route -->
+                <!--img src="{{ url_for('video_2') }}" alt="Camera 02 Feed" id="camera2-stream"-->
+                <img src="{{ url_for('video_1') }}" alt="Camera 01 Feed" id="camera1-stream">
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2024 Parking System. All Rights Reserved.
+    </footer>
+
+</body>
+</html>

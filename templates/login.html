@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <script>
+        // Function to set focus on the userId input field when the page loads
+        window.onload = function() {
+            document.getElementById('userId').focus();
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <h2>SYSTEM AUTHENTICATION</h2>
+    </header>
+    <div class="main">
+        <div class="container">
+            <form action="/login" method="POST">
+                <label for="userId">User  ID:</label>
+                <input type="text" name="userId" id="userId" required>
+                
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" required>
+                
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
