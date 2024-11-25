@@ -1,0 +1,79 @@
+/* custom.css */
+
+body {
+    background-color: black; /* Set the background color to black */
+    color: white; /* Set the text color to white for better visibility */
+    font-family: Arial, sans-serif; /* Set a default font */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    height: 100vh; /* Full height of the viewport */
+    display: flex; /* Use flexbox for centering */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+}
+
+
+
+header h2{
+    margin-top: 1rem;
+}
+
+.main {
+    display: flex; /* Use flexbox for centering the form */
+    justify-content: center; /* Center form horizontally */
+    align-items: center; /* Center form vertically */
+    flex-grow: 1; /* Allow main to grow to fill the space */
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent background for the form */
+    padding: 20px; /* Padding inside the container */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Shadow for depth */
+    width: 300px; /* Fixed width for the form */
+    display: flex; /* Use flexbox for the form layout */
+    flex-direction: column; /* Stack children vertically */
+}
+
+form {
+    display: flex; /* Use flexbox for form layout */
+    flex-direction: column; /* Stack children vertically */
+}
+
+label {
+    margin: 10px 0 5px; /* Margin for labels */
+}
+
+input {
+    padding: 10px; /* Padding inside input fields */
+    margin-bottom: 15px; /* Space below input fields */
+    border: 1px solid white; /* White border for input fields */
+    border-radius: 5px; /* Rounded corners for input fields */
+    background-color: black; /* Black background for input fields */
+    color: white; /* White text color for input fields */
+}
+
+button {
+    padding: 10px; /* Padding inside button */
+    background-color: royalblue; /* White background for button */
+    color: black; /* Black text color for button */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners for button */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: lightgray; /* Change background color on hover */
+}
+
+/* Footer styles */
+footer {
+    text-align: center; /* Center align footer text */
+    padding: 10px; /* Padding inside footer */
+    position: absolute; /* Position footer at the bottom */
+    bottom: 0; /* Align to the bottom */
+    width: 100%; /* Full width */
+}

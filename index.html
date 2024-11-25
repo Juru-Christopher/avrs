@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Dashboard</title>
+    <!-- Linking to the static CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        const updateInterval = 1000; // 1 second
+
+        function fetchRandomEntries() {
+            $.getJSON('/random_entries', function(data) {
+                let tableBody = $('#database tbody');
+                tableBody.empty(); // Clear existing entries
+                data.forEach(entry => {
+                    tableBody.append(`<tr><td>${entry[0]}</td><td>${entry[1]}</td><td>${entry[2]}</td></tr>`);
+                });
+            });
+        }
+
+        function fetchSystemLogs() {
+            $.getJSON('/system_logs', function(data) {
+                let tableBody = $('#logs tbody');
+                tableBody.empty(); // Clear existing entries
+                data.forEach(log => {
+                    tableBody.append(`<tr><td>${log[0]}</td><td>${log[1]}</td><td>${log[2]}</td></tr>`);
+                });
+            });
+        }
+
+        $(document).ready(function() {
+            fetchRandomEntries(); // Initial fetch for database entries
+            fetchSystemLogs(); // Initial fetch for system logs
+            setInterval(fetchRandomEntries, updateInterval); // Fetch every second for database entries
+            setInterval(fetchSystemLogs, updateInterval); // Fetch every second for system logs
+
+            // WebSocket connection for plate detection
+            const socket = new WebSocket('ws://localhost:5000/plate-detection');
+
+            socket.onmessage = (event) => {
+                const data = JSON.parse(event.data);
+                const plateText = data.plateText;
+                const x = data.x;
+                const y = data.y;
+
+                // Create a new div element to display the plate information
+                const plateDiv = document.createElement('div');
+                plateDiv.style.position = 'absolute';
+                plateDiv.style.top = `${y}px`;
+                plateDiv.style.left = `${x}px`;
+                plateDiv.style.background = 'rgba(0, 255, 0, 0.5)';
+                plateDiv.style.padding = '10px';
+                plateDiv.style.borderRadius = '10px';
+                plateDiv.innerHTML = `Plate: ${plateText}<br>X: ${x}, Y: ${y}`;
+
+                // Add the div element to the camera feed
+                document.querySelector('.camera-feed').appendChild(plateDiv);
+            };
+        });
+    </script>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">Parking System</div>
+        <div class="nav-links">
+            <a href="reports.html" class="nav-link">Reports</a>
+            <a href="settings.html" class="nav-link">Settings</a>
+            <a href="login.html" class="nav-link">Sign Out</a>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div id="sidebar">
+        <a href="index.html" class="nav-link">Dashboard</a>
+        <a href="{{ url_for('camera_views') }}" class="nav-link">Camera Views</a>
+        <a href="DatabaseView.html" class="nav-link">View Database</a>
+        <a href="logView.html" class="nav-link">View System Logs</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Left Column: Camera Feed -->
+        <div class="left-column">
+            <div class="camera-frame">
+                <div class="camera-title">CAMERA 01</div>
+                <div class="camera-feed" style="position: relative;">
+                    <!-- Embed video feed from Flask route -->
+                    <img src="{{ url_for('video_1') }}" alt="Camera Feed" id="camera-stream">
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column: Database and Logs -->
+        <div class="right-column">
+            <div class="database">
+                <h2>Database</h2>
+                <table id="database">
+                    <thead>
+                        <tr>
+                            <th>Plate Number</th>
+                            <th>Timestamp</th>
+                            < th>Camera</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Dynamic content will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="logs">
+                <h2>Logs</h2>
+                <table id="logs">
+                    <thead>
+                        <tr>
+                            <th>Log ID</th>
+                            <th>Timestamp</th>
+                            <th>Message</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Dynamic content will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2024 Parking System. All Rights Reserved.
+    </footer>
+
+</body>
+</html>
