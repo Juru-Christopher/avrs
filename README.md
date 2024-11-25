@@ -34,7 +34,7 @@ External Dependencies
 Installation
 ------------
     Clone the repository:
-git clone https://gitlab.com/juruchristopher001/platedetectionsystem.git
+git clone https://github.com/Juru-Christopher/avrs.git
 cd parking-system
 
 Set up your Python environment:
@@ -57,7 +57,7 @@ Usage
 
 
     Me : Chris256
-    Rep: https://gitlab.com/juruchristopher001/platedetectionsystem.git
+    Rep: https://github.com/Juru-Christopher/avrs.git
 
 Acknowledgements
 ----------------
